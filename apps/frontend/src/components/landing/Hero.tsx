@@ -266,26 +266,24 @@ const Hero: React.FC = () => {
           >
             <motion.button
               onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-              whileHover={{ scale: 1.05 }}
+              // whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="bg-mint-500 hover:bg-mint-600 font-inter group relative flex items-center space-x-2 overflow-hidden rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
             >
               {/* Button glow effect */}
               <div className="from-mint-400 to-mint-600 absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-20" />
               <span className="relative z-10">Start Chatting</span>
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="relative z-10"
-              >
+              <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity }} className="relative z-10">
                 <ArrowRight className="h-5 w-5" />
               </motion.div>
             </motion.button>
 
             <motion.button
               onClick={() => scrollToSection("#portfolio")}
-              whileHover={{ scale: 1.05 }}
+              // whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="text-midnight-900 font-inter hover:border-mint-300 group rounded-2xl border-2 border-gray-200 bg-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-gray-50"
             >
               See Features

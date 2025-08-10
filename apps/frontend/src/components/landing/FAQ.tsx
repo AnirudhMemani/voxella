@@ -130,7 +130,7 @@ const FAQ: React.FC = () => {
                 const element = document.querySelector("#contact");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
-              className="bg-mint-500 hover:bg-mint-600 font-inter transform rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="bg-mint-500 hover:bg-mint-600 font-inter transform rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
             >
               Contact Support
             </button>

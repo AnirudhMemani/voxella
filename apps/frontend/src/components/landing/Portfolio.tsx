@@ -234,6 +234,7 @@ const Portfolio: React.FC = () => {
                     <motion.div
                       className="rounded-2xl border border-white/40 bg-white/60 p-4 text-center backdrop-blur-sm"
                       whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       <Calendar className="text-mint-500 mx-auto mb-2 h-6 w-6" />
                       <p className="font-urbanist text-midnight-900 text-lg font-bold">
@@ -245,6 +246,7 @@ const Portfolio: React.FC = () => {
                     <motion.div
                       className="rounded-2xl border border-white/40 bg-white/60 p-4 text-center backdrop-blur-sm"
                       whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       <Users className="text-mint-500 mx-auto mb-2 h-6 w-6" />
                       <p className="font-urbanist text-midnight-900 text-lg font-bold">
@@ -256,6 +258,7 @@ const Portfolio: React.FC = () => {
                     <motion.div
                       className="rounded-2xl border border-white/40 bg-white/60 p-4 text-center backdrop-blur-sm"
                       whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       <TrendingUp className="text-mint-500 mx-auto mb-2 h-6 w-6" />
                       <p className="font-urbanist text-midnight-900 text-lg font-bold">
@@ -338,19 +341,29 @@ const Portfolio: React.FC = () => {
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8, rotateY: 2 }}
+                whileHover={{
+                  y: -8,
+                  rotateY: 2,
+                  boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+                }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 onClick={() => setActiveProject(index)}
-                className={`group cursor-pointer overflow-hidden rounded-2xl border-2 bg-white shadow-lg transition-all duration-500 hover:shadow-2xl ${
-                  index === activeProject ? "border-mint-300" : "border-gray-100"
-                }`}
+                className="group cursor-pointer rounded-2xl border-2 border-gray-100 bg-white"
+                style={{
+                  boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                  borderRadius: "1rem",
+                  overflow: "hidden",
+                }}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div
+                  className="relative h-48 overflow-hidden"
+                  style={{ borderTopLeftRadius: "1rem", borderTopRightRadius: "1rem" }}
+                >
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div
                     className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-70 transition-opacity duration-500 group-hover:opacity-50`}
@@ -410,8 +423,9 @@ const Portfolio: React.FC = () => {
               </p>
               <motion.button
                 onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-                whileHover={{ scale: 1.05 }}
+                // whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="bg-mint-500 hover:bg-mint-600 font-inter rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 Start Your Chat Experience

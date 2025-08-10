@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-gray-100 bg-white p-8 shadow-xl"
+            className="text-midnight-900 rounded-3xl border border-gray-100 bg-white p-8 shadow-xl"
           >
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="focus:border-mint-500 focus:ring-mint-200 font-inter w-full rounded-xl border border-gray-300 px-4 py-3 transition-colors focus:ring-2"
+                      className="focus:border-mint-500 focus:ring-mint-200 font-inter text-midnight-900 w-full rounded-xl border border-gray-300 px-4 py-3 transition-colors focus:ring-2"
                     >
                       <option value="">Select inquiry type</option>
                       <option value="support">Technical Support</option>
@@ -210,7 +210,7 @@ const Contact: React.FC = () => {
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleChange}
-                      className="focus:border-mint-500 focus:ring-mint-200 font-inter w-full rounded-xl border border-gray-300 px-4 py-3 transition-colors focus:ring-2"
+                      className="focus:border-mint-500 focus:ring-mint-200 font-inter text-midnight-900 w-full rounded-xl border border-gray-300 px-4 py-3 transition-colors focus:ring-2"
                     >
                       <option value="">Select priority</option>
                       <option value="urgent">Urgent</option>
@@ -239,7 +239,7 @@ const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="bg-mint-500 hover:bg-mint-600 font-inter flex w-full transform items-center justify-center space-x-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="bg-mint-500 hover:bg-mint-600 font-inter flex w-full transform items-center justify-center space-x-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
                 >
                   <Send className="h-5 w-5" />
                   <span>Send Message</span>

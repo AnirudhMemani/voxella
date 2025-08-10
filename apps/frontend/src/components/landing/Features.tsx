@@ -149,8 +149,16 @@ const Features: React.FC = () => {
           {/* Large AI Feature Card - Spans 2 columns */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, rotateY: 2 }}
-            className="from-mint-50 to-mint-100 border-mint-200/50 relative overflow-hidden rounded-3xl border bg-gradient-to-br p-8 shadow-lg transition-all duration-500 hover:shadow-2xl lg:col-span-2"
+            whileHover={{
+              scale: 1.02,
+              rotateY: 2,
+              boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="from-mint-50 to-mint-100 border-mint-200/50 relative overflow-hidden rounded-3xl border bg-gradient-to-br p-8 shadow-lg lg:col-span-2"
+            style={{
+              boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            }}
           >
             {/* Decorative elements */}
             <motion.div
@@ -209,8 +217,16 @@ const Features: React.FC = () => {
           {/* Rapid MVP Card */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, rotateY: 1 }}
-            className="relative overflow-hidden rounded-2xl border border-blue-200/50 bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow-lg transition-all duration-500 hover:shadow-xl"
+            whileHover={{
+              scale: 1.02,
+              rotateY: 1,
+              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-2xl border border-blue-200/50 bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow-lg"
+            style={{
+              boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            }}
           >
             <div className="relative z-10">
               {(() => {
@@ -241,8 +257,16 @@ const Features: React.FC = () => {
           {/* User-Centric Design Card */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, rotateY: 1 }}
-            className="relative overflow-hidden rounded-2xl border border-purple-200/50 bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow-lg transition-all duration-500 hover:shadow-xl"
+            whileHover={{
+              scale: 1.02,
+              rotateY: 1,
+              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-2xl border border-purple-200/50 bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow-lg"
+            style={{
+              boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            }}
           >
             <div className="relative z-10">
               {(() => {
@@ -273,8 +297,16 @@ const Features: React.FC = () => {
           {/* Security Feature Card */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, rotateY: 1 }}
-            className="relative overflow-hidden rounded-2xl border border-red-200/50 bg-gradient-to-br from-red-50 to-red-100 p-6 shadow-lg transition-all duration-500 hover:shadow-xl"
+            whileHover={{
+              scale: 1.02,
+              rotateY: 1,
+              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-2xl border border-red-200/50 bg-gradient-to-br from-red-50 to-red-100 p-6 shadow-lg"
+            style={{
+              boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            }}
           >
             <div className="relative z-10">
               {(() => {
@@ -311,8 +343,16 @@ const Features: React.FC = () => {
           {/* Tech Stack Card - Spans full width */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.01, rotateY: -1 }}
-            className="relative overflow-hidden rounded-3xl border border-gray-200/50 bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-lg transition-all duration-500 hover:shadow-2xl lg:col-span-3"
+            whileHover={{
+              scale: 1.01,
+              rotateY: -1,
+              boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-3xl border border-gray-200/50 bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-lg lg:col-span-3"
+            style={{
+              boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            }}
           >
             <motion.div
               className="absolute bottom-0 right-0 h-36 w-36 rounded-full bg-gray-200/30 blur-2xl"
@@ -344,8 +384,13 @@ const Features: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className="rounded-xl border border-white/40 bg-white/60 p-6 text-center backdrop-blur-sm transition-all duration-200 hover:bg-white/80"
+                      whileHover={{
+                        scale: 1.05,
+                        y: -5,
+                        backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      }}
+                      className="rounded-xl border border-white/40 bg-white/60 p-6 text-center backdrop-blur-sm"
+                      style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}
                     >
                       <TechIcon className={`h-8 w-8 ${tech.color} mx-auto mb-3`} />
                       <div className="font-inter text-midnight-700 mb-2 text-sm font-medium">{tech.title}</div>
@@ -399,8 +444,9 @@ const Features: React.FC = () => {
               </p>
               <motion.button
                 onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-                whileHover={{ scale: 1.05 }}
+                // whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="bg-mint-500 hover:bg-mint-600 font-inter rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 Join the Conversation

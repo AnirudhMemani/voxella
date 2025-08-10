@@ -77,8 +77,9 @@ const Footer: React.FC = () => {
 
               <motion.button
                 onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-                whileHover={{ scale: 1.05 }}
+                // whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="bg-mint-500 hover:bg-mint-600 font-inter group flex items-center space-x-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 <span>Start Chatting</span>
