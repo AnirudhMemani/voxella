@@ -24,7 +24,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white selection:!bg-[#2ecc7140]">
       <AnimatePresence mode="wait">
         {isLoading ? (
           <LoadingScreen key="loading" />

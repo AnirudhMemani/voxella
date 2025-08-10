@@ -8,7 +8,7 @@ import { NAVIGATION_ROUTES } from "./utils/constants";
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <main className="text-foreground dark:bg-background bg-background dark:text-foreground w-full selection:bg-[#2ecc7140] lg:min-h-dvh">
+    <main className="text-foreground dark:bg-background bg-background dark:text-foreground w-full selection:bg-[#3b8bff4d] lg:min-h-dvh">
       <ImageCropProvider>
         <Routes>
           <Route path={"/"} element={<Landing />} />
