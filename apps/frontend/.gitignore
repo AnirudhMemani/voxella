@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Vite writes temporary configs while bundling vite.config.ts
+vite.config.ts.timestamp-*
+vite.config.js.timestamp-*
+
 .env
 
 # Editor directories and files
