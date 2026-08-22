@@ -1,4 +1,4 @@
-import { prisma } from "@instachat/db/client";
+import { prisma } from "@voxella/db/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ConflictException, ResourceNotFoundError, UnauthorizedError } from "../middlewares/GlobalErrorHandler.js";

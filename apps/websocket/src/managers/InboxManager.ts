@@ -1,5 +1,5 @@
-import { SocketResponse } from "@instachat/common/common";
-import { prisma } from "@instachat/db/client";
+import { SocketResponse } from "@voxella/common/common";
+import { prisma } from "@voxella/db/client";
 import {
   ADD_TO_CHAT,
   CHANGE_GROUP_NAME,
@@ -19,7 +19,7 @@ import {
   TRANSFER_SUPER_ADMIN,
   UPDATE_INBOX,
   UPDATE_PROFILE,
-} from "@instachat/messages/messages";
+} from "@voxella/messages/messages";
 import {
   IAddUserToGroupChat,
   IAdminStatusChange,
@@ -35,7 +35,7 @@ import {
   ITransferSuperAdminAndLeaveGroupChat,
   IUpdateChatRoomName,
   IUpdateProfile,
-} from "@instachat/messages/types";
+} from "@voxella/messages/types";
 import cloudinary from "cloudinary";
 import { Redis } from "ioredis";
 import WebSocket from "ws";

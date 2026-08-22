@@ -2,7 +2,7 @@ import { useChatRoom } from "@/hooks/useChatRoom";
 import { usePotentialSuperAdmins } from "@/hooks/usePotentialSuperAdmins";
 import { alertModalAtom, showAdminSelectionModalAtom } from "@/state/global";
 import { printlogs } from "@/utils/logs";
-import { TRANSFER_SUPER_ADMIN } from "@instachat/messages/messages";
+import { TRANSFER_SUPER_ADMIN } from "@voxella/messages/messages";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useSetRecoilState } from "recoil";

@@ -1,4 +1,4 @@
-import { prisma } from "@instachat/db/client";
+import { prisma } from "@voxella/db/client";
 
 export const getChatRoom = async (chatRoomId: string, participantId?: string) => {
   return await prisma.chatRoom.findUnique({

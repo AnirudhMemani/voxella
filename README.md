@@ -73,7 +73,7 @@ On macOS with Homebrew:
 brew install redis postgresql@16
 brew services start redis
 brew services start postgresql@16
-createdb instachat
+createdb voxella
 ```
 
 ### 3. Configure environment variables
@@ -87,7 +87,7 @@ cp packages/db/.env.example packages/db/.env
 ```
 
 - `packages/db/.env` and `apps/backend/.env` need the same `DATABASE_URL`
-  (e.g. `postgresql://USER@localhost:5432/instachat`).
+  (e.g. `postgresql://USER@localhost:5432/voxella`).
 - `apps/backend/.env` and `apps/websocket/.env` must share the same `JWT_SECRET`.
 - `apps/websocket/.env` uses `WS_URL` for the server **port** (default `8080`) and
   `REDIS_HOST` / `REDIS_PORT` for the Redis connection.
