@@ -286,16 +286,6 @@ export class InboxManager {
 
       this.res.json(SEND_MESSAGE, { message: "Message sent", messageDetails: modifiedChatRoom });
       this.res.json(UPDATE_INBOX, { ...formattedInboxMessage, hasRead: true });
-
-      // fix this
-      // const MQServerUrl = "amqp://localhost";
-
-      // const conn = await amqp.connect(MQServerUrl);
-      // const channel = await conn.createChannel();
-      // await channel.assertQueue(MESSAGE_QUEUE);
-      // channel.sendToQueue(MESSAGE_QUEUE, message.payload);
-
-      // await redis.publish(chatRoomId, JSON.stringify(content));
     } catch (error) {
       printlogs("ERROR inside handleNewMessage()", error);
       this.res.error(NEW_MESSAGE, "There was an error trying to send this message");

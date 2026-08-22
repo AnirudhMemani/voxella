@@ -26,6 +26,10 @@ coverage
 out/
 build
 dist
+*.tsbuildinfo
+
+# Redis snapshot
+dump.rdb
 
 
 # Debug
