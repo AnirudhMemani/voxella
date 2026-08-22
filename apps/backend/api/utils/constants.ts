@@ -44,9 +44,16 @@ export class HTTPMessages {
   static CONFLICT = "Request could not be completed due to a conflict";
 }
 
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error(
+    "JWT_SECRET is not set. Refusing to start with an insecure fallback secret. Set JWT_SECRET in your environment (see .env.example)."
+  );
+}
+
 export const env = {
   PORT: process.env.PORT || 3000,
-  JWT_SECRET: process.env.JWT_SECRET || "FallbackJWTSecretForNow",
+  JWT_SECRET,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || "",
   CLOUDINARY_PRESET_NAME: process.env.CLOUDINARY_PRESET_NAME || "",
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || "",

@@ -1,9 +1,16 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error(
+    "JWT_SECRET is not set. Refusing to start with an insecure fallback secret. Set JWT_SECRET in your environment (see .env.example)."
+  );
+}
+
 export const env = {
   PORT: process.env.WS_PORT || 8080,
-  JWT_SECRET: process.env.JWT_SECRET || "FallbackJWTSecretForNow",
+  JWT_SECRET,
 } as const;
 
 export const STATUS_CODE = {
