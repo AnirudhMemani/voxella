@@ -35,6 +35,12 @@
     --radius: 0.5rem;
 
     --chat-cards-background: 0 0% 94%;
+
+    /* Brand accent, shared with the marketing page (mint / #2ecc71).
+       Single source of truth for every green accent in the app. */
+    --brand: 145 63% 49%;
+    --brand-foreground: 0 0% 100%;
+    --brand-hover: 142 71% 36%;
   }
 
   .dark {

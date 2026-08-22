@@ -30,8 +30,8 @@ import {
   REMOVE_FROM_CHAT,
   SEND_MESSAGE,
   TRANSFER_SUPER_ADMIN,
-} from "@instachat/messages/messages";
-import { IMessage } from "@instachat/messages/types";
+} from "@voxella/messages/messages";
+import { IMessage } from "@voxella/messages/types";
 import { format } from "date-fns";
 import EmojiPicker, { EmojiClickData, SuggestionMode, Theme } from "emoji-picker-react";
 import { ArrowLeft, CircleAlert, Clock, EllipsisVertical, Smile } from "lucide-react";
@@ -989,7 +989,7 @@ export const ChatRoom: React.FC<TWebSocket> = ({ socket }): JSX.Element => {
                 message?.sentBy?.id === user?.id ? (
                   <div className="flex flex-col items-end gap-1" key={message.id}>
                     <div className="flex max-w-[75%]">
-                      <div className="mx-1 flex max-w-md items-center rounded-3xl rounded-br-md bg-sky-500 px-3 py-2 lg:max-w-lg">
+                      <div className="text-brand-foreground bg-brand mx-1 flex max-w-md items-center rounded-3xl rounded-br-md px-3 py-2 lg:max-w-lg">
                         <span>{message?.content}</span>
                       </div>
                       <Avatar className="size-6 self-end">
@@ -1056,7 +1056,7 @@ export const ChatRoom: React.FC<TWebSocket> = ({ socket }): JSX.Element => {
             <p
               className={cn(
                 "cursor-not-allowed select-none text-gray-400",
-                message.length > 0 && "cursor-pointer text-blue-400 active:scale-95 active:text-blue-700"
+                message.length > 0 && "text-brand active:text-brand-hover cursor-pointer active:scale-95"
               )}
               onClick={handleSendMessage}
             >
@@ -1109,7 +1109,7 @@ export const ChatRoom: React.FC<TWebSocket> = ({ socket }): JSX.Element => {
             {chatRoomDetails.isGroup && chatRoomDetails.admins.some((admin) => admin.id === user.id) && (
               <Button
                 variant="ghost"
-                className="cursor-pointer !p-0 text-blue-400 hover:!bg-transparent active:scale-95 active:text-blue-700"
+                className="text-brand active:text-brand-hover cursor-pointer !p-0 hover:!bg-transparent active:scale-95"
                 onClick={handleAddMembers}
               >
                 Add people
@@ -1211,8 +1211,8 @@ export const ChatRoom: React.FC<TWebSocket> = ({ socket }): JSX.Element => {
                 </Button>
 
                 <p>
-                  You won't be able to send or receive messages unless someone adds you back to the chat. No one will be
-                  notified that you left the chat.
+                  You won&apos;t be able to send or receive messages unless someone adds you back to the chat. No one
+                  will be notified that you left the chat.
                 </p>
               </>
             )}

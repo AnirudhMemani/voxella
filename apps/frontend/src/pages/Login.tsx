@@ -131,7 +131,7 @@ const Login: React.FC = (): JSX.Element => {
             </Button>
           </form>
           <div className="flex items-center justify-center gap-2">
-            <p className="text-center text-xs sm:text-sm">Don't have an account? </p>
+            <p className="text-center text-xs sm:text-sm">Don&apos;t have an account? </p>
             <Link
               to={NAVIGATION_ROUTES.SIGNUP}
               className={cn(

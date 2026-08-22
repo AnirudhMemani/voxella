@@ -93,26 +93,26 @@ const ButtonToModal: React.FC = (): JSX.Element => {
                   </Button>
                 </div>
                 <p className="text-foreground/80 border-b pb-4">
-                  If you're a <span className="text-green-500">recruiter</span> and would like to explore the
+                  If you&apos;re a <span className="text-green-500">recruiter</span> and would like to explore the
                   application without the hassle of creating a new account, please use the credentials below to log in.
                   Two sets of credentials are provided to help you test sending and receiving messages.
                 </p>
                 <div className="border-b py-4">
                   <h1 className="text-green-500">Credentials one:</h1>
                   <p className="text-foreground/80">
-                    Username: <span className="text-sky-500">beta_tester</span>
+                    Username: <span className="text-brand">beta_tester</span>
                   </p>
                   <p className="text-foreground/80">
-                    Password: <span className="text-sky-500">Welcome123</span>
+                    Password: <span className="text-brand">Welcome123</span>
                   </p>
                 </div>
                 <div className="border-b py-4">
                   <h1 className="text-green-500">Credentials two:</h1>
                   <p className="text-foreground/80">
-                    Username: <span className="text-sky-500">beta_tester2</span>
+                    Username: <span className="text-brand">beta_tester2</span>
                   </p>
                   <p className="text-foreground/80">
-                    Password: <span className="text-sky-500">Welcome123</span>
+                    Password: <span className="text-brand">Welcome123</span>
                   </p>
                 </div>
                 <p className="text-foreground/80 pt-4">
@@ -121,8 +121,8 @@ const ButtonToModal: React.FC = (): JSX.Element => {
                 </p>
                 {parsedShowPopup !== true && (
                   <p className="text-muted-foreground">
-                    Don't want to see this pop-up again?{" "}
-                    <span className="cursor-pointer text-sky-500 underline underline-offset-2" onClick={disabledPopup}>
+                    Don&apos;t want to see this pop-up again?{" "}
+                    <span className="text-brand cursor-pointer underline underline-offset-2" onClick={disabledPopup}>
                       Click here
                     </span>
                   </p>

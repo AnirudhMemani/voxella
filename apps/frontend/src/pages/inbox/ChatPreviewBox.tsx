@@ -39,7 +39,7 @@ export const ChatPreviewBox: React.FC<TChatPreviewBoxProps> = ({
           </div>
         </div>
       </div>
-      {!hasRead && <Dot className="size-12 text-blue-400" />}
+      {!hasRead && <Dot className="text-brand size-12" />}
     </div>
   );
 };
