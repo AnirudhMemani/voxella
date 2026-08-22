@@ -1,49 +1,52 @@
 import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Github, Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { EXTERNAL_LINKS } from "@/utils/constants";
+import { Reveal } from "./animations";
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      question: "Is the chat app free to use?",
-      answer: "Yes! Our chat features are completely free for personal use.",
+      question: "Is Voxella open source?",
+      answer:
+        "Yes. Voxella is a free, open-source side project built to learn full-stack, real-time architecture. All of the code (frontend, REST API, WebSocket server, and database schema) is on GitHub.",
     },
     {
-      question: "How secure are my conversations?",
+      question: "How does real-time messaging work?",
       answer:
-        "Your privacy and security are our top priorities. All messages are protected with end-to-end encryption, meaning only you and your recipients can read them. We use military-grade 256-bit encryption and follow zero-knowledge architecture principles - we can't access your messages even if we wanted to.",
+        "Clients open a WebSocket connection to a WebSocket server instance. Each chat room maps to a Redis Pub/Sub channel: when a message is published, every WebSocket instance subscribed to that channel forwards it to its connected clients. This decouples delivery from any single server, so the socket layer can scale out horizontally behind a load balancer.",
     },
     {
-      question: "Can I use the app on multiple devices?",
+      question: "What can I actually do in a chat?",
       answer:
-        "Absolutely! Our chat app works seamlessly across all your devices - phone, tablet, desktop, and web browser. Your messages sync instantly across all devices, so you can start a conversation on your phone and continue it on your computer without missing a beat.",
+        "Send text messages (with an emoji picker) in one-to-one direct messages and group chats. You get read receipts, unread indicators, and can search for users and existing chats to start a conversation. Profile and group pictures can be uploaded and cropped.",
     },
     {
-      question: "What file types can I share in chats?",
+      question: "How do group chats work?",
       answer:
-        "You can share almost any file type including photos, videos, documents, PDFs, audio files, and more. Free users get 100MB per file, while premium users can share files up to 2GB. We also support drag-and-drop functionality for easy file sharing.",
+        "You can create a group, rename it, add or remove members, promote or demote admins, and transfer the super-admin role. Members can leave, and the super-admin can delete the group. There are no channels or automated moderation tools, just direct group management.",
     },
     {
-      question: "How do group chats and channels work?",
+      question: "Are my messages encrypted?",
       answer:
-        "Create unlimited group chats with up to 1000 members each. You can organize conversations into channels by topic, set different permission levels for members, and use moderation tools to keep discussions on track. Perfect for teams, communities, or family groups.",
+        "Be aware that Voxella is a learning project, not a hardened secure messenger. Passwords are hashed with bcrypt and sessions use JWTs, and production traffic would run over TLS, but messages are stored as plain text in the database. There is no end-to-end encryption, so don't use it for anything sensitive.",
     },
     {
-      question: "Can I make voice and video calls?",
+      question: "Can I share files or make voice/video calls?",
       answer:
-        "Yes! Our platform supports high-quality voice and video calls for individuals and groups. Features include screen sharing, noise cancellation, and recording capabilities. All calls are encrypted and work smoothly even on slower internet connections.",
+        "Not currently. Messages are text (plus emoji), and the only uploads are profile and group images via Cloudinary. There is no arbitrary file sharing and no voice or video calling; those aren't implemented.",
     },
-    // {
-    //   question: "Is there an AI assistant feature?",
-    //   answer:
-    //     "Our AI assistant can help with various tasks like language translation, message summarization, scheduling, and answering questions. The AI is privacy-focused and processes requests without storing your personal data. You can enable or disable AI features at any time.",
-    // },
     {
-      question: "How do I report inappropriate content or users?",
+      question: "What's the tech stack?",
       answer:
-        "We have robust reporting and moderation tools. You can report messages, users, or entire channels with just a few clicks. Our moderation team reviews reports quickly, and we have automated systems to detect and prevent spam, harassment, and other inappropriate content.",
+        "A Turborepo monorepo: React + Vite + Tailwind + shadcn/ui + Recoil on the frontend; Node.js + Express with JWT and Zod for the REST API; a standalone `ws` WebSocket server; Redis Pub/Sub (ioredis) for fan-out; and PostgreSQL via Prisma for persistence.",
+    },
+    {
+      question: "Is there a hosted demo I can try?",
+      answer:
+        "There's no public hosted instance right now. To try it, clone the repository and run the stack locally. The README has full setup and architecture notes.",
     },
   ];
 
@@ -54,31 +57,21 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-white py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
+        <Reveal className="mb-16 text-center">
           <h2 className="font-urbanist text-midnight-900 mb-6 text-4xl font-bold md:text-5xl">
             Frequently Asked{" "}
             <span className="from-mint-500 to-mint-600 bg-gradient-to-r bg-clip-text text-transparent">Questions</span>
           </h2>
           <p className="font-inter text-midnight-600 mx-auto max-w-2xl text-xl">
-            Everything you need to know about our chat platform and features.
+            What Voxella does, how it&apos;s built, and (just as importantly) what it doesn&apos;t do.
           </p>
-        </motion.div>
+        </Reveal>
 
-        <div className="space-y-4">
+        <Reveal className="space-y-4">
           {faqs.map((faq, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+              className="rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow duration-200 ease-out hover:shadow-md"
             >
               <button
                 onClick={() => toggleFAQ(index)}
@@ -100,7 +93,7 @@ const FAQ: React.FC = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6">
@@ -109,33 +102,27 @@ const FAQ: React.FC = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
+        <Reveal className="mt-16 text-center">
           <div className="from-mint-50 to-mint-100 rounded-3xl bg-gradient-to-r p-8">
             <h3 className="font-urbanist text-midnight-900 mb-4 text-2xl font-bold">Still have questions?</h3>
             <p className="font-inter text-midnight-600 mb-6 text-lg">
-              Our support team is here to help. Contact us anytime for assistance with the platform.
+              The README covers setup and architecture in detail. For anything else, open an issue on GitHub.
             </p>
-            <button
-              onClick={() => {
-                const element = document.querySelector("#contact");
-                if (element) element.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="bg-mint-500 hover:bg-mint-600 font-inter transform rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
+            <a
+              href={EXTERNAL_LINKS.GITHUB_ISSUES}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-mint-500 hover:bg-mint-600 font-inter inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:shadow-xl"
             >
-              Contact Support
-            </button>
+              <Github className="h-5 w-5" />
+              Open an Issue
+            </a>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

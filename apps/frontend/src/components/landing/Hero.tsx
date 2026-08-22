@@ -1,60 +1,18 @@
-import { NAVIGATION_ROUTES } from "@/utils/constants";
+import { EXTERNAL_LINKS, NAVIGATION_ROUTES } from "@/utils/constants";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { AnimatedContainer, cardHoverTransition, Reveal } from "./animations";
 
 const Hero: React.FC = () => {
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
   const navigate = useNavigate();
 
-  // Dummy brand logo images from Pexels
-  const brands = [
-    "https://randomuser.me/api/portraits/women/10.jpg",
-    "https://randomuser.me/api/portraits/women/71.jpg",
-    "https://randomuser.me/api/portraits/men/48.jpg",
-    "https://randomuser.me/api/portraits/men/60.jpg",
-    "https://randomuser.me/api/portraits/men/47.jpg",
-    "https://randomuser.me/api/portraits/men/39.jpg",
-    "https://randomuser.me/api/portraits/men/68.jpg",
-    "https://randomuser.me/api/portraits/women/29.jpg",
-    "https://randomuser.me/api/portraits/women/63.jpg",
-    "https://randomuser.me/api/portraits/women/54.jpg",
-    "https://randomuser.me/api/portraits/women/32.jpg",
-    "https://randomuser.me/api/portraits/women/12.jpg",
-    "https://randomuser.me/api/portraits/women/77.jpg",
-    "https://randomuser.me/api/portraits/women/31.jpg",
-    "https://randomuser.me/api/portraits/women/19.jpg",
-    "https://randomuser.me/api/portraits/women/70.jpg",
+  // Real capabilities backed by the codebase, no invented metrics.
+  const highlights = [
+    { value: "WebSockets", label: "Real-time delivery" },
+    { value: "Redis Pub/Sub", label: "Horizontally scalable" },
+    { value: "PostgreSQL", label: "Persisted with Prisma" },
   ];
 
   return (
@@ -206,161 +164,113 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-32 sm:px-6 lg:px-8">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center">
-          <motion.div variants={itemVariants} className="mb-8">
-            <motion.h1
-              className="font-urbanist text-midnight-900 relative mb-6 text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
-              variants={itemVariants}
-            >
-              {/* Text glow effect */}
-              <div className="font-urbanist from-mint-400 to-mint-600 absolute inset-0 bg-gradient-to-r bg-clip-text text-5xl font-bold leading-tight text-transparent opacity-20 blur-sm md:text-7xl lg:text-8xl">
-                Launch Your <span className="font-instrument italic">Idea</span>
-                <br />
-                in Weeks
-              </div>
-              Connect{" "}
-              <motion.span
-                className="font-instrument from-mint-500 to-mint-600 relative bg-gradient-to-r bg-clip-text italic text-transparent"
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                {/* Additional glow for the "Instantly" text */}
+        <div className="text-center">
+          <div className="mb-8">
+            <AnimatedContainer>
+              <h1 className="font-urbanist text-midnight-900 relative mb-6 text-5xl font-bold leading-tight md:text-7xl lg:text-8xl">
+                {/* Text glow effect */}
+                <div className="font-urbanist from-mint-400 to-mint-600 absolute inset-0 bg-gradient-to-r bg-clip-text text-5xl font-bold leading-tight text-transparent opacity-20 blur-sm md:text-7xl lg:text-8xl">
+                  Connect <span className="font-instrument italic">Instantly</span>
+                  <br />
+                  Anywhere
+                </div>
+                Connect{" "}
                 <motion.span
-                  className="font-instrument text-mint-400 absolute inset-0 italic opacity-30 blur-md"
+                  className="font-instrument from-mint-500 to-mint-600 relative bg-gradient-to-r bg-clip-text italic text-transparent"
                   animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.02, 1],
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
                 >
+                  {/* Additional glow for the "Instantly" text */}
+                  <motion.span
+                    className="font-instrument text-mint-400 absolute inset-0 italic opacity-30 blur-md"
+                    animate={{
+                      opacity: [0.3, 0.6, 0.3],
+                      scale: [1, 1.02, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    Instantly
+                  </motion.span>
                   Instantly
                 </motion.span>
-                Instantly
-              </motion.span>
-              <br />
-              Anywhere
-            </motion.h1>
+                <br />
+                Anywhere
+              </h1>
+            </AnimatedContainer>
 
-            <motion.p
-              className="font-inter text-midnight-600 mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl"
-              variants={itemVariants}
-            >
-              Experience smooth communication with our next generation chat platform. Connect with friends, teams, and
-              communities in real-time with powerful features and crystal clear messaging.
-            </motion.p>
-          </motion.div>
+            <AnimatedContainer delay={0.2}>
+              <p className="font-inter text-midnight-600 mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl">
+                Voxella is an open-source, real-time chat app: direct messages and group chats over WebSockets, fanned
+                out with Redis Pub/Sub so the socket layer scales horizontally. Built as a learning project to explore a
+                production-style architecture end to end.
+              </p>
+            </AnimatedContainer>
+          </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            <motion.button
-              onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-              // whileHover={{ scale: 1.05 }}
+          <AnimatedContainer delay={0.3} className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <motion.a
+              href={EXTERNAL_LINKS.GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="bg-mint-500 hover:bg-mint-600 font-inter group relative flex items-center space-x-2 overflow-hidden rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
+              className="bg-mint-500 hover:bg-mint-600 font-inter group relative flex items-center space-x-2 overflow-hidden rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:shadow-xl"
             >
               {/* Button glow effect */}
-              <div className="from-mint-400 to-mint-600 absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-20" />
-              <span className="relative z-10">Start Chatting</span>
-              <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity }} className="relative z-10">
+              <div className="from-mint-400 to-mint-600 absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 blur-xl transition-opacity duration-200 ease-out group-hover:opacity-20" />
+              <Github className="relative z-10 h-5 w-5" />
+              <span className="relative z-10">View Source on GitHub</span>
+            </motion.a>
+
+            <motion.button
+              onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="text-midnight-900 font-inter hover:border-mint-300 group flex items-center space-x-2 rounded-2xl border-2 border-gray-200 bg-white px-8 py-4 text-lg font-semibold transition-all duration-200 ease-out hover:bg-gray-50"
+            >
+              <span>Sign in</span>
+              <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity }}>
                 <ArrowRight className="h-5 w-5" />
               </motion.div>
             </motion.button>
+          </AnimatedContainer>
 
-            <motion.button
-              onClick={() => scrollToSection("#portfolio")}
-              // whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="text-midnight-900 font-inter hover:border-mint-300 group rounded-2xl border-2 border-gray-200 bg-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-gray-50"
-            >
-              See Features
-            </motion.button>
-          </motion.div>
+          {/* Note: no hosted demo; sign-in requires running the stack locally (see the README). */}
 
-          {/* Company Logo Carousel */}
-          <motion.div variants={itemVariants} className="mb-12">
-            <motion.p
-              className="font-inter text-midnight-500 mb-6 text-sm"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Trusted by millions of users worldwide
-            </motion.p>
-
-            {/* Single Line Carousel */}
-            <div className="relative mx-auto max-w-5xl overflow-hidden">
-              <motion.div
-                className="flex items-center space-x-8"
-                animate={{
-                  x: [0, -1600],
-                }}
-                transition={{
-                  duration: 25,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                {/* Duplicate brands for seamless loop */}
-                {[...brands, ...brands].map((logo, index) => (
-                  <motion.div key={index} className="flex-shrink-0" whileHover={{ scale: 1.1 }}>
-                    <img
-                      src={logo}
-                      alt={`Brand ${index + 1}`}
-                      className="h-12 w-12 rounded-lg object-cover opacity-60 grayscale transition-opacity duration-300 hover:opacity-100 hover:grayscale-0"
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* Gradient Overlays */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-gray-50 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-gray-50 to-transparent" />
-            </div>
-          </motion.div>
-
-          {/* Key Stats */}
-          <motion.div
-            variants={itemVariants}
+          {/* Architecture highlights, verifiable in the codebase, not marketing metrics */}
+          <Reveal
+            delay={0.5}
             className="mx-auto max-w-4xl rounded-2xl border border-white/40 bg-white/60 p-6 backdrop-blur-sm"
           >
             <div className="grid grid-cols-1 gap-6 text-center md:grid-cols-3">
-              <motion.div whileHover={{ scale: 1.05 }} className="group">
-                <h3 className="font-urbanist text-mint-600 group-hover:text-mint-700 mb-2 text-3xl font-bold transition-colors">
-                  10M+
-                </h3>
-                <p className="font-inter text-midnight-600 font-medium">Messages Sent</p>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.05 }} className="group">
-                <h3 className="font-urbanist text-mint-600 group-hover:text-mint-700 mb-2 text-3xl font-bold transition-colors">
-                  500K+
-                </h3>
-                <p className="font-inter text-midnight-600 font-medium">Active Users</p>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.05 }} className="group">
-                <h3 className="font-urbanist text-mint-600 group-hover:text-mint-700 mb-2 text-3xl font-bold transition-colors">
-                  &lt;1ms
-                </h3>
-                <p className="font-inter text-midnight-600 font-medium">Message Delivery</p>
-              </motion.div>
+              {highlights.map((item) => (
+                <motion.div
+                  key={item.value}
+                  whileHover={{ scale: 1.05 }}
+                  transition={cardHoverTransition}
+                  className="group"
+                >
+                  <h3 className="font-urbanist text-mint-600 group-hover:text-mint-700 mb-2 text-2xl font-bold transition-colors md:text-3xl">
+                    {item.value}
+                  </h3>
+                  <p className="font-inter text-midnight-600 font-medium">{item.label}</p>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

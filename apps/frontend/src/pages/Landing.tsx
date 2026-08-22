@@ -1,4 +1,5 @@
 import About from "@/components/landing/About";
+import Architecture from "@/components/landing/Architecture";
 import Contact from "@/components/landing/Contact";
 import FAQ from "@/components/landing/FAQ";
 import Features from "@/components/landing/Features";
@@ -6,8 +7,6 @@ import Footer from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import LoadingScreen from "@/components/landing/LoadingScreen";
-import Portfolio from "@/components/landing/Portfolio";
-import Testimonials from "@/components/landing/Testimonials";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -33,8 +32,7 @@ const Landing = () => {
             <Header />
             <Hero />
             <Features />
-            <Testimonials />
-            <Portfolio />
+            <Architecture />
             <About />
             <FAQ />
             <Contact />

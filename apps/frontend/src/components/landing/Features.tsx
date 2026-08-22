@@ -1,89 +1,62 @@
 import { NAVIGATION_ROUTES } from "@/utils/constants";
 import { motion } from "framer-motion";
-import { BarChart, Bot, Cloud, Code, Cpu, Database, Lock, Rocket, Shield, Smartphone, Users, Zap } from "lucide-react";
+import { CheckCheck, Cloud, Code, Database, MessageCircle, Rocket, Shield, Smartphone, Users, Zap } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { cardHover, cardHoverTransition, Reveal } from "./animations";
 
 const Features: React.FC = () => {
   const mainFeatures = [
     {
-      icon: Bot,
-      title: "Smart Messaging",
+      icon: MessageCircle,
+      title: "Real-time Messaging",
       description:
-        "Enjoy enhanced messaging with smart features like quick replies, message scheduling, and typing indicators to make your conversations more efficient.",
+        "Direct messages and group chats delivered instantly over a WebSocket connection, with read receipts and an emoji picker built into the composer.",
       color: "from-mint-400 to-mint-600",
       bgColor: "from-mint-50 to-mint-100",
-      stats: "Smart Features",
-      details: ["Quick replies", "Message scheduling", "Typing indicators", "Read receipts"],
+      stats: "WebSocket-powered",
+      details: ["Direct messages", "Group chats", "Read receipts", "Emoji picker"],
     },
     {
       icon: Rocket,
-      title: "Fast & Reliable",
+      title: "Scalable by Design",
       description:
-        "Send and receive messages quickly with our optimized messaging system that works even with slower connections.",
+        "Each chat room maps to a Redis Pub/Sub channel, so messages fan out across every WebSocket instance. The socket layer stays stateless and scales out horizontally.",
       color: "from-blue-400 to-blue-600",
       bgColor: "from-blue-50 to-blue-100",
-      stats: "Reliable Delivery",
-      details: ["Message status", "Delivery confirmations", "Offline mode", "Low data usage"],
+      stats: "Redis Pub/Sub",
+      details: [],
     },
     {
       icon: Users,
-      title: "Group Chats",
+      title: "Group Chats & Roles",
       description:
-        "Create group conversations with friends, family or colleagues to share moments, plan events or discuss ideas together.",
+        "Create groups, rename them, add or remove members, and manage a super-admin plus admins, with super-admin transfer and per-member permissions.",
       color: "from-purple-400 to-purple-600",
       bgColor: "from-purple-50 to-purple-100",
-      stats: "Up to 100 Members",
-      details: ["Group creation", "Photo sharing", "Emoji reactions", "Polls & voting"],
+      stats: "Admins & Super-admin",
+      details: [],
     },
     {
       icon: Shield,
-      title: "Private Conversations",
+      title: "Authenticated Sessions",
       description:
-        "Your messages are private and secure with standard encryption and privacy controls that keep your conversations confidential.",
+        "Register and log in with JWT-based auth and bcrypt-hashed passwords. The same token authenticates both the REST API and the WebSocket connection.",
       color: "from-red-400 to-red-600",
       bgColor: "from-red-50 to-red-100",
-      stats: "Privacy Controls",
-      details: ["Message privacy", "Block unwanted contacts", "Report system", "Account security"],
+      stats: "JWT + bcrypt",
+      details: [],
     },
   ];
 
   const navigate = useNavigate();
 
   const techFeatures = [
-    { icon: Database, title: "Message History", desc: "Searchable chat logs", color: "text-blue-600" },
-    { icon: Cloud, title: "Cloud Sync", desc: "Cross-device sync", color: "text-green-600" },
-    { icon: Lock, title: "Privacy First", desc: "Your data stays private", color: "text-red-600" },
-    { icon: Cpu, title: "Smart Features", desc: "AI-powered assistance", color: "text-purple-600" },
+    { icon: Database, title: "PostgreSQL + Prisma", desc: "Messages & chats persisted", color: "text-blue-600" },
+    { icon: Cloud, title: "Image Uploads", desc: "Profile & group pictures via Cloudinary", color: "text-green-600" },
+    { icon: CheckCheck, title: "Read Receipts", desc: "Track who has read a message", color: "text-mint-600" },
+    { icon: Code, title: "Type-safe Protocol", desc: "Shared WebSocket message contracts", color: "text-purple-600" },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      scale: 0.95,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-      },
-    },
-  };
 
   return (
     <section id="features" className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white py-24">
@@ -119,13 +92,7 @@ const Features: React.FC = () => {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
+        <Reveal className="mb-16 text-center">
           <h2 className="font-urbanist text-midnight-900 mb-6 text-4xl font-bold md:text-5xl">
             Everything You Need to{" "}
             <span className="from-mint-500 to-mint-600 bg-gradient-to-r bg-clip-text text-transparent">
@@ -133,53 +100,30 @@ const Features: React.FC = () => {
             </span>
           </h2>
           <p className="font-inter text-midnight-600 mx-auto max-w-3xl text-xl">
-            Our comprehensive chat platform provides all the tools you need for great communication, collaboration, and
-            connection with the people who matter most.
+            A focused set of features, each one actually implemented in the codebase: real-time messaging, group
+            management, and the infrastructure that keeps it all in sync.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Balanced Bento Grid Layout */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
+        <Reveal className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Large AI Feature Card - Spans 2 columns */}
           <motion.div
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.02,
-              rotateY: 2,
-              boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={cardHover}
+            transition={cardHoverTransition}
             className="from-mint-50 to-mint-100 border-mint-200/50 relative overflow-hidden rounded-3xl border bg-gradient-to-br p-8 shadow-lg lg:col-span-2"
             style={{
               boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
             }}
           >
-            {/* Decorative elements */}
-            <motion.div
-              className="bg-mint-200/30 absolute right-0 top-0 h-40 w-40 rounded-full blur-2xl"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="bg-mint-300/20 absolute bottom-0 left-0 h-32 w-32 rounded-full blur-2xl"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            />
-
             <div className="relative z-10">
               {(() => {
                 const MainFeatureIcon = mainFeatures[0].icon;
                 return (
                   <motion.div
                     className={`h-16 w-16 bg-gradient-to-r ${mainFeatures[0].color} mb-6 flex items-center justify-center rounded-2xl`}
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={cardHoverTransition}
                   >
                     <MainFeatureIcon className="h-8 w-8 text-white" />
                   </motion.div>
@@ -198,17 +142,11 @@ const Features: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                {mainFeatures[0].details.map((detail, index) => (
-                  <motion.div
-                    key={detail}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 + 0.5 }}
-                    className="text-midnight-600 flex items-center text-sm"
-                  >
+                {mainFeatures[0].details.map((detail) => (
+                  <div key={detail} className="text-midnight-600 flex items-center text-sm">
                     <div className="bg-mint-500 mr-2 h-2 w-2 rounded-full" />
                     {detail}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -216,13 +154,8 @@ const Features: React.FC = () => {
 
           {/* Rapid MVP Card */}
           <motion.div
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.02,
-              rotateY: 1,
-              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={cardHover}
+            transition={cardHoverTransition}
             className="relative overflow-hidden rounded-2xl border border-blue-200/50 bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow-lg"
             style={{
               boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
@@ -234,8 +167,8 @@ const Features: React.FC = () => {
                 return (
                   <motion.div
                     className={`h-12 w-12 bg-gradient-to-r ${mainFeatures[1].color} mb-4 flex items-center justify-center rounded-xl`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={cardHoverTransition}
                   >
                     <FeatureIcon className="h-6 w-6 text-white" />
                   </motion.div>
@@ -256,13 +189,8 @@ const Features: React.FC = () => {
 
           {/* User-Centric Design Card */}
           <motion.div
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.02,
-              rotateY: 1,
-              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={cardHover}
+            transition={cardHoverTransition}
             className="relative overflow-hidden rounded-2xl border border-purple-200/50 bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow-lg"
             style={{
               boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
@@ -274,8 +202,8 @@ const Features: React.FC = () => {
                 return (
                   <motion.div
                     className={`h-12 w-12 bg-gradient-to-r ${mainFeatures[2].color} mb-4 flex items-center justify-center rounded-xl`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={cardHoverTransition}
                   >
                     <FeatureIcon className="h-6 w-6 text-white" />
                   </motion.div>
@@ -296,13 +224,8 @@ const Features: React.FC = () => {
 
           {/* Security Feature Card */}
           <motion.div
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.02,
-              rotateY: 1,
-              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={cardHover}
+            transition={cardHoverTransition}
             className="relative overflow-hidden rounded-2xl border border-red-200/50 bg-gradient-to-br from-red-50 to-red-100 p-6 shadow-lg"
             style={{
               boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
@@ -314,8 +237,8 @@ const Features: React.FC = () => {
                 return (
                   <motion.div
                     className={`h-12 w-12 bg-gradient-to-r ${mainFeatures[3].color} mb-4 flex items-center justify-center rounded-xl`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={cardHoverTransition}
                   >
                     <FeatureIcon className="h-6 w-6 text-white" />
                   </motion.div>
@@ -333,8 +256,8 @@ const Features: React.FC = () => {
                   {mainFeatures[3].stats}
                 </span>
                 <div className="flex items-center space-x-2">
-                  <Smartphone className="h-4 w-4 text-red-600" />
-                  <span className="font-inter text-midnight-600 text-xs">Mobile Ready</span>
+                  <Shield className="h-4 w-4 text-red-600" />
+                  <span className="font-inter text-midnight-600 text-xs">Server-verified</span>
                 </div>
               </div>
             </div>
@@ -342,53 +265,40 @@ const Features: React.FC = () => {
 
           {/* Tech Stack Card - Spans full width */}
           <motion.div
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.01,
-              rotateY: -1,
-              boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={cardHover}
+            transition={cardHoverTransition}
             className="relative overflow-hidden rounded-3xl border border-gray-200/50 bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-lg lg:col-span-3"
             style={{
               boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
             }}
           >
-            <motion.div
-              className="absolute bottom-0 right-0 h-36 w-36 rounded-full bg-gray-200/30 blur-2xl"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            />
-
             <div className="relative z-10">
               <div className="mb-8 flex items-center justify-center">
                 <motion.div
                   className="mr-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-r from-gray-600 to-gray-800"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={cardHoverTransition}
                 >
                   <Code className="h-7 w-7 text-white" />
                 </motion.div>
                 <div className="text-center">
-                  <h3 className="font-urbanist text-midnight-900 text-2xl font-bold">Advanced Chat Features</h3>
-                  <p className="font-inter text-midnight-600">Powered by cutting-edge technology</p>
+                  <h3 className="font-urbanist text-midnight-900 text-2xl font-bold">Under the Hood</h3>
+                  <p className="font-inter text-midnight-600">The building blocks behind the app</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-                {techFeatures.map((tech, index) => {
+                {techFeatures.map((tech) => {
                   const TechIcon = tech.icon;
                   return (
                     <motion.div
                       key={tech.title}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + 0.3 }}
                       whileHover={{
                         scale: 1.05,
                         y: -5,
                         backgroundColor: "rgba(255, 255, 255, 0.8)",
                       }}
+                      transition={cardHoverTransition}
                       className="rounded-xl border border-white/40 bg-white/60 p-6 text-center backdrop-blur-sm"
                       style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}
                     >
@@ -403,25 +313,19 @@ const Features: React.FC = () => {
               <div className="mt-8 flex items-center justify-center space-x-8">
                 <div className="flex items-center space-x-2">
                   <Smartphone className="h-5 w-5 text-gray-600" />
-                  <span className="font-inter text-midnight-600 text-sm">Mobile-first & Responsive</span>
+                  <span className="font-inter text-midnight-600 text-sm">Responsive web UI</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <BarChart className="h-5 w-5 text-gray-600" />
-                  <span className="font-inter text-midnight-600 text-sm">Analytics Built-in</span>
+                  <Code className="h-5 w-5 text-gray-600" />
+                  <span className="font-inter text-midnight-600 text-sm">Turborepo monorepo</span>
                 </div>
               </div>
             </div>
           </motion.div>
-        </motion.div>
+        </Reveal>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <Reveal className="text-center">
           <div className="from-mint-50 to-mint-100 relative overflow-hidden rounded-3xl bg-gradient-to-r p-12">
             {/* Animated background elements */}
             <motion.div
@@ -437,23 +341,24 @@ const Features: React.FC = () => {
 
             <div className="relative z-10">
               <h3 className="font-urbanist text-midnight-900 mb-4 text-2xl font-bold md:text-3xl">
-                Ready to Start Chatting?
+                Want to see how it works?
               </h3>
               <p className="font-inter text-midnight-600 mx-auto mb-8 max-w-2xl text-lg">
-                Join millions of users who trust our platform for their daily communication needs.
+                The full architecture and setup instructions live in the README. Read the code, or spin it up locally
+                and sign in.
               </p>
               <motion.button
                 onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-                // whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="bg-mint-500 hover:bg-mint-600 font-inter rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
+                transition={cardHoverTransition}
+                className="bg-mint-500 hover:bg-mint-600 font-inter rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:shadow-xl"
               >
-                Join the Conversation
+                Sign in
               </motion.button>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

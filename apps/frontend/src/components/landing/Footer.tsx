@@ -1,20 +1,18 @@
-import { NAVIGATION_ROUTES } from "@/utils/constants";
+import { EXTERNAL_LINKS } from "@/utils/constants";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Zap } from "lucide-react";
+import { ArrowUpRight, Github, Zap } from "lucide-react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { cardHoverTransition, Reveal } from "./animations";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
+    { name: "Features", href: "#features" },
+    { name: "Architecture", href: "#architecture" },
     { name: "About", href: "#about" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
     { name: "FAQ", href: "#faq" },
   ];
-
-  const navigate = useNavigate();
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -46,18 +44,13 @@ const Footer: React.FC = () => {
         <div className="py-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left Side - Brand & CTA */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <Reveal>
               {/* Logo */}
               <div className="mb-6 flex items-center space-x-3">
                 <motion.div
                   className="from-mint-500 to-mint-600 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={cardHoverTransition}
                 >
                   <Zap className="h-7 w-7 text-white" />
                 </motion.div>
@@ -65,38 +58,35 @@ const Footer: React.FC = () => {
               </div>
 
               <h3 className="font-urbanist mb-4 text-2xl font-bold leading-tight md:text-3xl">
-                Ready to connect with{" "}
+                An open-source,{" "}
                 <span className="from-mint-400 to-mint-500 bg-gradient-to-r bg-clip-text text-transparent">
-                  the world?
+                  real-time chat app
                 </span>
               </h3>
 
               <p className="font-inter mb-8 max-w-md text-lg text-gray-300">
-                Join millions of users who trust our platform for seamless communication.
+                Built as a side project to explore WebSockets, Redis Pub/Sub, and a scalable messaging architecture.
               </p>
 
-              <motion.button
-                onClick={() => navigate(NAVIGATION_ROUTES.LOGIN)}
-                // whileHover={{ scale: 1.05 }}
+              <motion.a
+                href={EXTERNAL_LINKS.GITHUB_REPO}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="bg-mint-500 hover:bg-mint-600 font-inter group flex items-center space-x-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
+                transition={cardHoverTransition}
+                className="bg-mint-500 hover:bg-mint-600 font-inter group flex w-fit items-center space-x-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:shadow-xl"
               >
-                <span>Start Chatting</span>
+                <Github className="h-5 w-5" />
+                <span>View Source</span>
                 <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
                   <ArrowUpRight className="h-5 w-5" />
                 </motion.div>
-              </motion.button>
-            </motion.div>
+              </motion.a>
+            </Reveal>
 
             {/* Right Side - Quick Links & Contact */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="lg:text-right"
-            >
+            <Reveal delay={0.1} className="lg:text-right">
               {/* Quick Links */}
               <div className="mb-8">
                 <h4 className="font-urbanist mb-6 text-xl font-semibold">Quick Links</h4>
@@ -106,7 +96,8 @@ const Footer: React.FC = () => {
                       key={link.name}
                       onClick={() => scrollToSection(link.href)}
                       whileHover={{ scale: 1.05, x: -5 }}
-                      className="font-inter hover:text-mint-400 text-lg text-gray-300 transition-colors duration-200"
+                      transition={cardHoverTransition}
+                      className="font-inter hover:text-mint-400 text-lg text-gray-300 transition-colors duration-200 ease-out"
                     >
                       {link.name}
                     </motion.button>
@@ -114,57 +105,54 @@ const Footer: React.FC = () => {
                 </div>
               </div>
 
-              {/* Contact Info */}
-              <div className="space-y-3">
+              {/* Project links */}
+              <div className="space-y-3 lg:flex lg:flex-col lg:items-end">
                 <motion.a
-                  href="mailto:support@chatapp.com"
+                  href={EXTERNAL_LINKS.GITHUB_REPO}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
-                  className="font-inter hover:text-mint-400 block text-xl text-white transition-colors duration-200"
+                  transition={cardHoverTransition}
+                  className="font-inter hover:text-mint-400 inline-flex items-center gap-2 text-xl text-white transition-colors duration-200 ease-out"
                 >
-                  support@voxella.com
+                  <Github className="h-5 w-5" />
+                  AnirudhMemani/voxella
                 </motion.a>
                 <motion.a
-                  href="tel:+15551234567"
+                  href={EXTERNAL_LINKS.GITHUB_ISSUES}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
-                  className="font-inter hover:text-mint-400 block text-lg text-gray-300 transition-colors duration-200"
+                  transition={cardHoverTransition}
+                  className="font-inter hover:text-mint-400 block text-lg text-gray-300 transition-colors duration-200 ease-out"
                 >
-                  +91 1234 56 7890
+                  Report an issue
                 </motion.a>
-                <p className="font-inter text-gray-400">Bangalore, IN</p>
               </div>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-800 py-8"
-        >
+        <Reveal delay={0.2} className="border-t border-gray-800 py-8">
           <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-            <p className="font-inter text-gray-400">© {currentYear} ChatApp. Connecting the world.</p>
+            <p className="font-inter text-gray-400">© {currentYear} Voxella · An open-source side project.</p>
 
             <div className="flex items-center space-x-8">
               <motion.a
-                href="#"
+                href={EXTERNAL_LINKS.GITHUB_REPO}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
-                className="font-inter hover:text-mint-400 text-gray-400 transition-colors duration-200"
+                transition={cardHoverTransition}
+                className="font-inter hover:text-mint-400 inline-flex items-center gap-2 text-gray-400 transition-colors duration-200 ease-out"
               >
-                Privacy
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.05 }}
-                className="font-inter hover:text-mint-400 text-gray-400 transition-colors duration-200"
-              >
-                Terms
+                <Github className="h-4 w-4" />
+                GitHub
               </motion.a>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </footer>
   );

@@ -14,6 +14,11 @@ export const NAVIGATION_ROUTES = {
   CREATE_NEW_GROUP: "/direct/group/new",
 } as const;
 
+export const EXTERNAL_LINKS = {
+  GITHUB_REPO: "https://github.com/AnirudhMemani/voxella",
+  GITHUB_ISSUES: "https://github.com/AnirudhMemani/voxella/issues",
+} as const;
+
 export const getMessageAge = (messageSentAt: Date) => {
   return formatDistanceToNowStrict(messageSentAt, {
     addSuffix: false,
