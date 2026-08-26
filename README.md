@@ -7,7 +7,7 @@ PostgreSQL via Prisma.
 
 ## Architecture
 
-<img width="13655" height="6799" alt="chat-app-architecture" src="https://github.com/user-attachments/assets/c55b674e-e88c-4d7c-b899-5cbe1e0c18f5" />
+<img alt="Voxella architecture diagram" src="docs/architecture-drawing.svg" />
 
 Clients open a WebSocket connection to a WebSocket server instance. Each chat room maps
 to a Redis Pub/Sub channel: when a message is published, every WebSocket instance
